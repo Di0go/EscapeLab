@@ -4,16 +4,14 @@ using System.Linq;
 
 public class PadManager : Sequence
 {
-    Renderer padRenderer;
-    GameObject parentObj;
+    [SerializeField] protected GameObject parentObj;
+
+    private Renderer padRenderer;
 
     private void Start()
     {
         //to only change the pressed pad's material
         padRenderer = GetComponent<Renderer>();
-
-        //to change all of the pads materials
-        parentObj = transform.parent.gameObject;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -48,7 +46,7 @@ public class PadManager : Sequence
     }
 
     //changes the pads color when the sequence is completed
-    private void ChangePadsColor(GameObject parent, Color col)
+    protected void ChangePadsColor(GameObject parent, Color col)
     {
         //loops trough every child object that the parent has
         foreach (Transform child in parent.transform)
@@ -57,5 +55,4 @@ public class PadManager : Sequence
             child.GetComponent<Renderer>().material.color = col;
         }
     }
-
 }
