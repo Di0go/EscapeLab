@@ -19,7 +19,7 @@ public class PadManager : Sequence
         //if the pad wasn't already added to the list 
         if (!playerOrder.Contains(int.Parse(transform.name)))
         {
-            //add it to the list
+            //add it to the list  
             playerOrder.Add(int.Parse(transform.name));
 
             //changes the pads material to yellow uppon activation
