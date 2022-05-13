@@ -8,12 +8,33 @@ public class LazerMovement : MonoBehaviour
     public float vel; //velocidade do lerp
     Transform mov;
     float l;
+
+    //raycast to detect the ground or the walls
+    private RaycastHit hit;
+
     void Start()
     {
         mov = GetComponent<Transform>();
         l = 0;
 
-        mov.position = pointA;
+        pointA = mov.position;
+
+        //pointB calculations
+
+        //if the laser is horizontal (z 90 º) point b is assigned to the first point that the ray hits in the ground
+        if (mov.eulerAngles.z == 90 && Physics.Raycast(pointA, Vector3.down, out hit))
+        {
+            pointB = hit.point;
+        }
+        //same but for vertical lasers
+        else if (mov.eulerAngles.z == 0 && mov.position.x >= 0 && Physics.Raycast(pointA, Vector3.left, out hit))
+        {
+            pointB = hit.point;
+        }
+        else if (mov.eulerAngles.z == 0 && mov.position.x < 0 && Physics.Raycast(pointA, Vector3.right, out hit))
+        {
+            pointB = hit.point;
+        }
     }
 
     void Update()
