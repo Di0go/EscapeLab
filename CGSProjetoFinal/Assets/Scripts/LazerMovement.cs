@@ -12,10 +12,16 @@ public class LazerMovement : MonoBehaviour
     //raycast to detect the ground or the walls
     private RaycastHit hit;
 
+    //lazer damage
+    [SerializeField] private float lazerDamage;
+
     void Start()
     {
         mov = GetComponent<Transform>();
         l = 0;
+
+        //default lazerDamage
+        lazerDamage = 2.5f;
 
         pointA = mov.position;
 
@@ -51,5 +57,13 @@ public class LazerMovement : MonoBehaviour
         
         l += vel;
         if (lc > 2) l = 0;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().DamagePlayer(lazerDamage);
+        }
     }
 }
