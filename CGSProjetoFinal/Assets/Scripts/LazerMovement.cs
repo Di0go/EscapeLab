@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class LazerMovement : MonoBehaviour
 {
+    //automode detects ground and walls, when this is disabled manual input in the inspector is required
+    public bool AutoMode = true;
+    [Space]
     public Vector3 pointA, pointB; // Posicão inicial/final
+    [Space]
     public float vel; //velocidade do lerp
+
     Transform mov;
     float l;
 
@@ -15,31 +20,41 @@ public class LazerMovement : MonoBehaviour
     //lazer damage
     [SerializeField] private int lazerDamage;
 
+    //this var allows or denies lazer damage to the player if a certain time has or hasn't passed
+    private bool canDamage;
+    //this var controls the damage cooldown from the lazer
+    private float lazerCooldown;
+
     void Start()
     {
         mov = GetComponent<Transform>();
         l = 0;
 
-        //default lazerDamage
+        //damage related vars
         lazerDamage = 1;
+        canDamage = true;
+        lazerCooldown = .5f;
 
-        pointA = mov.position;
+        if (AutoMode)
+        {
+            //auto assigns Point A to the startup position
+            pointA = mov.position;
 
-        //pointB calculations
-
-        //if the laser is horizontal (z 90 º) point b is assigned to the first point that the ray hits in the ground
-        if (mov.eulerAngles.z == 90 && Physics.Raycast(pointA, Vector3.down, out hit))
-        {
-            pointB = hit.point;
-        }
-        //same but for vertical lasers
-        else if (mov.eulerAngles.z == 0 && mov.position.x >= 0 && Physics.Raycast(pointA, Vector3.left, out hit))
-        {
-            pointB = hit.point;
-        }
-        else if (mov.eulerAngles.z == 0 && mov.position.x < 0 && Physics.Raycast(pointA, Vector3.right, out hit))
-        {
-            pointB = hit.point;
+            //auto assigns Point B to the raycast hit point
+            //horizontal lazers
+            if (mov.eulerAngles.z == 90 && Physics.Raycast(pointA, Vector3.down, out hit))
+            {
+                pointB = hit.point;
+            }
+            //vertical lazers
+            else if (mov.eulerAngles.z == 0 && mov.position.x >= 0 && Physics.Raycast(pointA, Vector3.left, out hit))
+            {
+                pointB = hit.point;
+            }
+            else if (mov.eulerAngles.z == 0 && mov.position.x < 0 && Physics.Raycast(pointA, Vector3.right, out hit))
+            {
+                pointB = hit.point;
+            }
         }
     }
 
@@ -53,11 +68,22 @@ public class LazerMovement : MonoBehaviour
         if (lc > 2) l = 0;
     }
 
-    private void OnTriggerEnter(Collider collision)
+    //this method handles the lazer damage 
+    public void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player" && canDamage == true)
         {
             collision.gameObject.GetComponent<HealthSystem>().DamagePlayer(lazerDamage);
+            canDamage = false;
+
+            //invoke allows us to wait x time before executing a method
+            Invoke("CooldownSwitch", lazerCooldown);
         }
+    }
+
+    //lazer cooldown switcher
+    private void CooldownSwitch()
+    {
+        canDamage = true;
     }
 }
