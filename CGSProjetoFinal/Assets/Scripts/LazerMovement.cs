@@ -13,7 +13,7 @@ public class LazerMovement : MonoBehaviour
     private RaycastHit hit;
 
     //lazer damage
-    [SerializeField] private float lazerDamage;
+    [SerializeField] private int lazerDamage;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class LazerMovement : MonoBehaviour
         l = 0;
 
         //default lazerDamage
-        lazerDamage = 2.5f;
+        lazerDamage = 1;
 
         pointA = mov.position;
 
@@ -43,12 +43,6 @@ public class LazerMovement : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-
-    }
-
     private void FixedUpdate()
     {
         float lc = l;
@@ -59,11 +53,11 @@ public class LazerMovement : MonoBehaviour
         if (lc > 2) l = 0;
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.name == "Player")
         {
-            collision.gameObject.GetComponent<Player>().DamagePlayer(lazerDamage);
+            collision.gameObject.GetComponent<HealthSystem>().DamagePlayer(lazerDamage);
         }
     }
 }
