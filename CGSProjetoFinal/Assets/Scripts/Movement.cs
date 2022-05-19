@@ -3,11 +3,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed;
+    public Vector3 rotationSpeed;
     private Vector2 dir;
     public float jHeight;
+    public float fallMult;
     private Rigidbody rb;
     private bool jumpInput;
-    public Vector3 rotationSpeed;
     private float hInput, vInput;
     private bool isPlayerGrounded;
 
@@ -15,9 +16,10 @@ public class Movement : MonoBehaviour
     {
         speed = 5f;
         jHeight = 3.5f;
+        fallMult = 2.5f;
         isPlayerGrounded = true;
         rb = GetComponent<Rigidbody>();
-        rotationSpeed = new Vector3(0, 90, 0);
+        rotationSpeed = new Vector3(0, 250, 0);
     }
 
     void Update()
@@ -49,7 +51,14 @@ public class Movement : MonoBehaviour
     {
         //playerIsGrounded prevents jumping again whilst in the air
         if (jumpInput && isPlayerGrounded)
-            rb.AddForce(new Vector3(0, height, 0), ForceMode.Impulse);
+        {
+            rb.AddForce(new Vector2(0, height), ForceMode.VelocityChange);
+        }
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * fallMult * Time.deltaTime;
+        }
     }
 
     //collision checkers
