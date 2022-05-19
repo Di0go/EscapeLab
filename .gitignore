@@ -12,6 +12,7 @@ Builds/
 # ===================================== #
 ExportedObj/
 obj/
+.vs/
 *.svd
 *.userprefs
 *.csproj
