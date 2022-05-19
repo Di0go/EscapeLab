@@ -2,53 +2,54 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    //vars
-    public bool isPlayerGrounded;
-
-    [SerializeField] private float jumpHeight;
-    [SerializeField] private float speed;
-
-    private bool jumpInput;
-
-    private Vector3 movement;
+    public float speed;
+    private Vector2 dir;
+    public float jHeight;
     private Rigidbody rb;
+    private bool jumpInput;
+    public Vector3 rotationSpeed;
+    private float hInput, vInput;
+    private bool isPlayerGrounded;
 
     void Start()
     {
-        jumpHeight = 4.5f;
+        speed = 5f;
+        jHeight = 3.5f;
+        isPlayerGrounded = true;
         rb = GetComponent<Rigidbody>();
-        isPlayerGrounded = false;
-        speed = 3f;
+        rotationSpeed = new Vector3(0, 90, 0);
     }
 
     void Update()
     {
-        //normalizing the vector prevents faster movement if two inputs are used at the same time
-        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         jumpInput = Input.GetButton("Jump");
+        hInput = Input.GetAxisRaw("Horizontal");
+        vInput = Input.GetAxisRaw("Vertical");
+        //.normalized so diagnonal speed and normal speed are the same
+        dir = new Vector2(hInput, vInput).normalized;
     }
 
     void FixedUpdate()
     {
-        Move(movement);
-        Jump(jumpHeight);
+        MovePlayer();
+        Jump(jHeight);
     }
 
-    private void Move(Vector3 dir)
+    private void MovePlayer()
     {
-        //ignore visual studio's recomendation
-        transform.Translate(speed * Time.deltaTime * dir);
+        //credits to Yoreki (https://forum.unity.com/threads/can-not-move-and-rotate-at-the-same-time.734438/)
+
+        Quaternion deltaRotation = Quaternion.Euler(dir.x * rotationSpeed * Time.deltaTime);
+
+        rb.MoveRotation(rb.rotation * deltaRotation);
+        rb.MovePosition(rb.position + transform.forward * speed * dir.y * Time.deltaTime);
     }
+
     private void Jump(float height)
     {
-        // DEBUG
-        // Debug.Log("Input: " + jumpInput);
-        // Debug.Log("Value: " + playerIsGrounded);
-        // DEBUG
-
-        //playerIsGrounded prevents jumping again while in the air (can be extended to support double jump if necessary)
-        if (jumpInput && isPlayerGrounded) 
-            rb.velocity = new Vector3(0, height, 0);
+        //playerIsGrounded prevents jumping again whilst in the air
+        if (jumpInput && isPlayerGrounded)
+            rb.AddForce(new Vector3(0, height, 0), ForceMode.Impulse);
     }
 
     //collision checkers
@@ -69,5 +70,4 @@ public class Movement : MonoBehaviour
             isPlayerGrounded = false;
         }
     }
-
 }
