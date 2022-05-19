@@ -33,7 +33,7 @@ public class LazerMovement : MonoBehaviour
         //damage related vars
         lazerDamage = 1;
         canDamage = true;
-        lazerCooldown = .5f;
+        lazerCooldown = .75f;
 
         if (AutoMode)
         {
@@ -71,7 +71,7 @@ public class LazerMovement : MonoBehaviour
     //this method handles the lazer damage 
     public void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.name == "Player" && canDamage == true)
+        if (collision.gameObject.tag == "Player" && canDamage == true)
         {
             collision.gameObject.GetComponent<HealthSystem>().DamagePlayer(lazerDamage);
             canDamage = false;

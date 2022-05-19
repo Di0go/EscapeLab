@@ -5,16 +5,17 @@ using System.Collections;
 public class HealthSystem : MonoBehaviour
 {
     //vars
-    [SerializeField] protected int playerHealth;
+    protected int playerHealth;
     [SerializeField] protected Image[] hearts;
-
-    private Color defaultColor;
+    [Space]
+    private Material defaultMat;
+    public Material dmgMat;
 
     void Start()
     {
         playerHealth = 3;
 
-        defaultColor = gameObject.GetComponent<Renderer>().material.color;
+        defaultMat = gameObject.GetComponent<Renderer>().material;
 
         //full hp at start
         UpdateHearts();
@@ -52,12 +53,12 @@ public class HealthSystem : MonoBehaviour
     private IEnumerator DamageAnimation(float seconds)
     {
         //changes the color to red
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        gameObject.GetComponent<Renderer>().material = dmgMat;
 
         //wait for x seconds
         yield return new WaitForSeconds(seconds);
 
         //changes the material back to default
-        gameObject.GetComponent<Renderer>().material.color = defaultColor;
+        gameObject.GetComponent<Renderer>().material = defaultMat;
     }
 }
