@@ -874,7 +874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 39455275662912885, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: m_Name
-      value: Sequence Pads
+      value: Sequence Plates
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
@@ -988,7 +988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5916674726698890692, guid: 56b8054b01bb4b04fa51a4dc4d028f64, type: 3}
       propertyPath: m_Name
-      value: Reset Pad
+      value: Reset Plate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56b8054b01bb4b04fa51a4dc4d028f64, type: 3}

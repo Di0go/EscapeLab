@@ -675,7 +675,7 @@ GameObject:
   m_Component:
   - component: {fileID: 39455275662912884}
   m_Layer: 0
-  m_Name: Sequence Pads
+  m_Name: Sequence Plates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
