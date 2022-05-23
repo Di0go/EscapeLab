@@ -11,7 +11,7 @@ public class ResetSequence : PadManager
     //resets the player sequence
     private void Reset(List<int> list)
     {
-        ChangePadsColor(parentObj, Color.white);
+        ChangePadsColor(parentObj, defaultColor);
 
         list.Clear();
     }

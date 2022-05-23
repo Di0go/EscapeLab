@@ -7,11 +7,16 @@ public class PadManager : Sequence
     [SerializeField] protected GameObject parentObj;
 
     private Renderer padRenderer;
+    protected Color32 yellow, red, green, defaultColor;
 
     private void Start()
     {
         //to only change the pressed pad's material
         padRenderer = GetComponent<Renderer>();
+        yellow = new Color32(240, 230, 140, 125);
+        red = new Color32(220, 20, 60, 125);
+        green = new Color32(50, 205, 50, 125);
+        defaultColor = new Color32(255, 255, 255, 125);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -23,20 +28,22 @@ public class PadManager : Sequence
             playerOrder.Add(int.Parse(transform.name));
 
             //changes the pads material to yellow uppon activation
-            padRenderer.material.color = Color.yellow;
+            padRenderer.material.color = yellow;
 
             Debug.Log("Pad " + transform.name + " added!");
 
             //sequence is correct
             if (playerOrder.Count == correctOrder.Count && playerOrder.SequenceEqual(correctOrder))
             {
-                ChangePadsColor(parentObj, Color.green);
+                Debug.Log("Sequencia Correta!");
+                ChangePadsColor(parentObj, green);
             }
 
             //sequence is incorrect
             else if (playerOrder.Count == correctOrder.Count && !playerOrder.SequenceEqual(correctOrder))
             {
-                ChangePadsColor(parentObj, Color.red);
+                Debug.Log("Sequencia Errada");
+                ChangePadsColor(parentObj, red);
             }
         }
         else if (playerOrder.Contains(int.Parse(transform.name)))
@@ -51,8 +58,8 @@ public class PadManager : Sequence
         //loops trough every child object that the parent has
         foreach (Transform child in parent.transform)
         {
-            //changes it's color
             child.GetComponent<Renderer>().material.color = col;
+            //child.GetComponent<Renderer>().material.color = col;
         }
     }
 }
