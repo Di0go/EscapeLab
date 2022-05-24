@@ -1,21 +1,19 @@
 using UnityEngine;
 
-public class LazerSwitch : MonoBehaviour
+public class LazerSwitch : MonoBehaviour, IInteractable
 {
     private GameObject[] Lazers;
+    public string intText { get ;}
+
     void Start()
     {
         Lazers = GameObject.FindGameObjectsWithTag("Lazer");
     }
 
-    private void OnCollisionStay(Collision collision)
+    public bool Interact()
     {
-        SwitchOff();
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        SwitchOn();
+        if (Lazers[0].activeSelf == true) SwitchOff(); else SwitchOn();
+        return true;
     }
 
     private void SwitchOff()
