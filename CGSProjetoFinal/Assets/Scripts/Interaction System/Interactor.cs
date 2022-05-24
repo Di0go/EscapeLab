@@ -17,7 +17,6 @@ public class Interactor : MonoBehaviour
     [SerializeField] private GameObject intUI;
 
     private float intPointRadius;
-    private bool showUI;
     private int intNum;
 
     private void Start()
@@ -27,11 +26,12 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        showUI = false;
-
         //this creates the sphere that detects collisions with objects of layer intMask and returns them as an array
         intNum = Physics.OverlapSphereNonAlloc(intPoint.position,intPointRadius, 
             colliders, intMask);
+
+        //show UI switch
+        bool showUI = false;
 
         //when interactable object
         if (intNum > 0)
@@ -46,15 +46,30 @@ public class Interactor : MonoBehaviour
                 {
                     //interact with object 
                     interactable.Interact();
+                    showUI = false;
                 } 
                 else
                 {
+                    //saves the Y mesh bounds and multiplies it by 2
+                    float meshY = interactable.transform.GetComponent<MeshFilter>().mesh.bounds.max.y * 2;
+
+                    //sets the UI's position to the interactable's obj position and sums the Y value with the mesh bounds
+                    //so the UI appears on top of the object
+                    intUI.transform.position = 
+                        new Vector3
+                        (interactable.transform.position.x,         //X position for the UI
+                        interactable.transform.position.y + meshY,  //Y position for the UI
+                        interactable.transform.position.z);         //Z position for the UI
+
+                    //locks the UI's rotation to the main camera's rotation
+                    intUI.transform.rotation = Camera.main.transform.rotation;
+
                     //switch showUI to true if object is in range but no buttons are pressed
                     showUI = true;
                 }
             }
-            //switch between showing UI according to the showUI variable defined above
-            intUI.SetActive(showUI);
         }
+        //switch between showing UI according to the showUI variable defined above
+        intUI.SetActive(showUI);
     }
 }
