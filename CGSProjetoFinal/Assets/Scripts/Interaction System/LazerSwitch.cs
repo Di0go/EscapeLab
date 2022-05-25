@@ -3,14 +3,13 @@ using UnityEngine;
 public class LazerSwitch : MonoBehaviour, IInteractable
 {
     private GameObject[] Lazers;
-    public string intText { get ;}
 
     void Start()
     {
         Lazers = GameObject.FindGameObjectsWithTag("Lazer");
     }
 
-    public bool Interact()
+    public bool Interact(Interactor interactor)
     {
         if (Lazers[0].activeSelf == true) SwitchOff(); else SwitchOn();
         return true;

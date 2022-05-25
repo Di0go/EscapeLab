@@ -1,7 +1,8 @@
 using UnityEngine;
 
 //credits to: https://www.youtube.com/watch?v=THmW4YolDok
-//this class will create a sphere that will return an array of colliders of objects that it is in contact with
+//this class will create a sphere that detects and "caches" collisions
+//it also handles the UI component of this script
 
 public class Interactor : MonoBehaviour
 {
@@ -26,26 +27,27 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        //this creates the sphere that detects collisions with objects of layer intMask and returns them as an array
+        //this creates the sphere that detects collisions with objects of layer intMask and stores them in an array
         intNum = Physics.OverlapSphereNonAlloc(intPoint.position,intPointRadius, 
             colliders, intMask);
 
         //show UI switch
         bool showUI = false;
 
-        //when interactable object
+        //when interactable object is found
         if (intNum > 0)
         {
             //creates new interactable object from the colliders array
             IInteractable interactable = colliders[0].GetComponent<IInteractable>();
 
-            //if input is pressed and the object isnt null
+            //if object isn't null
             if (interactable != null)
             {
+                //input pressed
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     //interact with object 
-                    interactable.Interact();
+                    interactable.Interact(this);
                     showUI = false;
                 } 
                 else
@@ -55,7 +57,7 @@ public class Interactor : MonoBehaviour
 
                     //sets the UI's position to the interactable's obj position and sums the Y value with the mesh bounds
                     //so the UI appears on top of the object
-                    intUI.transform.position = 
+                    intUI.transform.localPosition = 
                         new Vector3
                         (interactable.transform.position.x,         //X position for the UI
                         interactable.transform.position.y + meshY,  //Y position for the UI
