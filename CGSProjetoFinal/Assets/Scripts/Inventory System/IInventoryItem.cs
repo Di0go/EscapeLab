@@ -6,17 +6,19 @@ public interface IInventoryItem
 {
     string Name { get; }
     Sprite Image { get; }
+    GameObject player { get; set; }
 
     void OnPickup();
+    void OnDrop();
 }
 
-//Event class - we use EventArgs because the event does not pass any data, it only serves as an notifier
+//This class allows us to pass the item as an argument when the event is triggered
 public class InventoryEventArgs : EventArgs
 {
+    public IInventoryItem Item;
+
     public InventoryEventArgs(IInventoryItem item)
     {
         Item = item;
     }
-
-    public IInventoryItem Item;
 }

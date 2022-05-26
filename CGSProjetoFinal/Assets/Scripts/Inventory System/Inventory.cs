@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     private List<IInventoryItem> playerItems = new List<IInventoryItem>();
 
     public event EventHandler<InventoryEventArgs> ItemAdded;
+    public event EventHandler<InventoryEventArgs> ItemDropped;
 
     //add item method
     public void AddItem(IInventoryItem item)
@@ -22,11 +23,10 @@ public class Inventory : MonoBehaviour
             //OnPickup from the interface
             item.OnPickup();
 
-            if (ItemAdded != null)
-            {
-                //event trigger
-                ItemAdded(this, new InventoryEventArgs(item));
-            }
+            //event trigger - ItemAdded?.Invoke it only invokes the event if the ItemAdded isn't null
+            ItemAdded?.Invoke(this, new InventoryEventArgs(item));
         }
     }
+
+    //remove item method
 }

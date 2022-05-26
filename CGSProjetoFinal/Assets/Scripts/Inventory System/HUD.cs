@@ -7,11 +7,11 @@ public class HUD : MonoBehaviour
 
     void Start()
     {
-        //each time an item is added the inventory trigger InventoryScript_ItemAdded
-        inventory.ItemAdded += InventoryScript_ItemAdded;
+        //subscribe the Inventory_ItemAdded method to the ItemAdded event, when the event is triggered the method will execute
+        inventory.ItemAdded += Inventory_ItemAdded;
     }
 
-    public void InventoryScript_ItemAdded(object sender, InventoryEventArgs eventItem)
+    public void Inventory_ItemAdded(object sender, InventoryEventArgs eventItem)
     {
         //find the inventory hud
         Transform InventoryPanel = transform.Find("InventoryPanel");
@@ -21,9 +21,8 @@ public class HUD : MonoBehaviour
         {
             //get the sprite that is in the slot (Slot -> Border -> Item)
             Image image = item.GetChild(0).GetChild(0).GetComponent<Image>();
-            Debug.Log("Found: " + image.enabled);
 
-            //if there is no image (no item or enabled = false)
+            //if there is no image (no item in slot)
             if (!image.enabled)
             {
                 //enable it 
