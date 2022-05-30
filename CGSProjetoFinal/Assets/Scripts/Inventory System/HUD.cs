@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,11 +8,17 @@ public class HUD : MonoBehaviour
 
     void Start()
     {
-        //subscribe the Inventory_ItemAdded method to the ItemAdded event, when the event is triggered the method will execute
-        inventory.ItemAdded += Inventory_ItemAdded;
+        //subscribe the methods to the events
+        inventory.ItemAdded += _ItemAdded;
+        inventory.ItemDropped += _ItemDropped;
     }
 
-    public void Inventory_ItemAdded(object sender, InventoryEventArgs eventItem)
+    void FixedUpdate()
+    {
+        inventory.RemoveItem(DropCheck());
+    }
+
+    public void _ItemAdded(object sender, InventoryEventArgs eventItem)
     {
         //find the inventory hud
         Transform InventoryPanel = transform.Find("InventoryPanel");
@@ -30,6 +37,58 @@ public class HUD : MonoBehaviour
 
                 //add the sprite from the picked up item to the slot
                 image.sprite = eventItem.Item.Image;
+
+                break;
+            }
+        }
+    }
+
+    //checks and returns which item is being dropped
+    private IInventoryItem DropCheck()
+    {
+        if (inventory.playerItems.Count > 0 && Input.GetKeyDown(KeyCode.Q))
+        {
+            //counter
+            int counter = 0;
+
+            //find the inventory hud
+            Transform InventoryPanel = transform.Find("InventoryPanel");
+
+            //loop trough all the slots in the inventory
+            foreach (Transform slot in InventoryPanel)
+            {
+                //new buttonstate object (Slot -> Border)
+                ButtonState buttonCheck = slot.GetChild(0).GetComponent<ButtonState>();
+
+                //checks if button is selected
+                if (buttonCheck.isSelected)
+                {
+                    IInventoryItem selectedItem = inventory.playerItems[counter];
+                    return selectedItem;
+                }
+                counter++;
+            }
+        }
+        return null;
+    }
+
+    //handles the UI part of the drop
+    private void _ItemDropped(object sender, InventoryEventArgs eventItem)
+    {
+        //find the inventory hud
+        Transform InventoryPanel = transform.Find("InventoryPanel");
+
+        //loop trough all the slots in the inventory
+        foreach (Transform slot in InventoryPanel)
+        {
+            //get the sprite that is in the slot (Slot -> Border -> Item)
+            Image image = slot.GetChild(0).GetChild(0).GetComponent<Image>();
+
+            if (image.enabled && image.name == eventItem.Item.Image.name)
+            {
+                image = null;
+
+                image.enabled = false;
 
                 break;
             }
