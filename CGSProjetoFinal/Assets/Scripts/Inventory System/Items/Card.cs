@@ -37,7 +37,7 @@ public class Card : MonoBehaviour, IInteractable, IInventoryItem
     public void OnDrop()
     {
         //change the objects position to the front of the player
-        gameObject.transform.position = player.transform.position + Vector3.forward;
+        gameObject.transform.position = player.transform.position + Vector3.forward * 2;
 
         //sets the object to true
         gameObject.SetActive(true);

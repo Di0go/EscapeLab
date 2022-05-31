@@ -46,7 +46,7 @@ public class HUD : MonoBehaviour
     //checks and returns which item is being dropped
     private IInventoryItem DropCheck()
     {
-        if (inventory.playerItems.Count > 0 && Input.GetKeyDown(KeyCode.Q))
+        if (inventory.playerItems.Count != 0 && Input.GetKeyDown(KeyCode.Q))
         {
             //counter
             int counter = 0;
@@ -84,9 +84,9 @@ public class HUD : MonoBehaviour
             //get the sprite that is in the slot (Slot -> Border -> Item)
             Image image = slot.GetChild(0).GetChild(0).GetComponent<Image>();
 
-            if (image.enabled && image.name == eventItem.Item.Image.name)
+            if (image.enabled && image.sprite.name == eventItem.Item.Image.name)
             {
-                image = null;
+                image.sprite = null;
 
                 image.enabled = false;
 

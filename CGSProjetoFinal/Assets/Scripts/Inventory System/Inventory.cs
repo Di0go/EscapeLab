@@ -7,9 +7,15 @@ public class Inventory : MonoBehaviour
     private int slots = 4;
 
     public List<IInventoryItem> playerItems = new List<IInventoryItem>();
+    public int listCount;
 
     public event EventHandler<InventoryEventArgs> ItemAdded;
     public event EventHandler<InventoryEventArgs> ItemDropped;
+
+    private void Update()
+    {
+        listCount = playerItems.Count;
+    }
 
     //add item method
     public void AddItem(IInventoryItem item)
@@ -32,16 +38,16 @@ public class Inventory : MonoBehaviour
     public void RemoveItem(IInventoryItem item)
     {
         //check if inventory has items
-        if (playerItems.Count > 0 && item != null)
+        if (item != null)
         {
-            //remove item
-            playerItems.Remove(item);
+            //event trigger
+            ItemDropped?.Invoke(this, new InventoryEventArgs(item));
 
             //OnDrop from the interface
             item.OnDrop();
 
-            //event trigger
-            ItemDropped?.Invoke(this, new InventoryEventArgs(item));
+            //remove item
+            playerItems.Remove(item);
         }
     }
 }
