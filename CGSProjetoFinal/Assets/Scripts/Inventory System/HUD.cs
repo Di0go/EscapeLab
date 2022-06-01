@@ -43,10 +43,12 @@ public class HUD : MonoBehaviour
         }
     }
 
-    //checks and returns which item is being dropped
+    //////
+    //DROP
+    //checks and returns which item was chosen by the player to drop
     private IInventoryItem DropCheck()
     {
-        if (inventory.playerItems.Count != 0 && Input.GetKeyDown(KeyCode.Q))
+        if (inventory.playerItems.Count > 0 && Input.GetKeyDown(KeyCode.Q))
         {
             //counter
             int counter = 0;
@@ -61,9 +63,10 @@ public class HUD : MonoBehaviour
                 ButtonState buttonCheck = slot.GetChild(0).GetComponent<ButtonState>();
 
                 //checks if button is selected
-                if (buttonCheck.isSelected)
+                if (buttonCheck.isSlotSelected)
                 {
                     IInventoryItem selectedItem = inventory.playerItems[counter];
+                    buttonCheck.isSlotSelected = false;
                     return selectedItem;
                 }
                 counter++;
