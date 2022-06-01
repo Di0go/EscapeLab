@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 //credits to: https://www.youtube.com/watch?v=THmW4YolDok
 //this class will create a sphere that detects and "caches" collisions
@@ -15,7 +16,7 @@ public class Interactor : MonoBehaviour
     //create and select the desired mask
     [SerializeField] private LayerMask intMask;
     //UI to interact when object is nearby
-    [SerializeField] private GameObject intUI;
+    [SerializeField] private SpriteRenderer intUI;
 
     private float intPointRadius;
     private int intNum;
@@ -72,6 +73,6 @@ public class Interactor : MonoBehaviour
             }
         }
         //switch between showing UI according to the showUI variable defined above
-        intUI.SetActive(showUI);
+        intUI.enabled = showUI;
     }
 }

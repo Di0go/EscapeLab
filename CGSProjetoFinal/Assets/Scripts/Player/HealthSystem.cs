@@ -7,6 +7,8 @@ public class HealthSystem : MonoBehaviour
     //vars
     protected int playerHealth;
     [SerializeField] protected Image[] hearts;
+    [SerializeField] protected Sprite fullSprite;
+    [SerializeField] protected Sprite emptySprite;
     [Space]
     private Material defaultMat;
     public Material dmgMat;
@@ -30,11 +32,11 @@ public class HealthSystem : MonoBehaviour
         {
             if (hCounter <= playerHealth)
             {
-                heart.color = Color.red;
+                heart.sprite = fullSprite;
             }
             else
             {
-                heart.color = Color.grey;
+                heart.sprite = emptySprite;
             }
             hCounter++;
         }
