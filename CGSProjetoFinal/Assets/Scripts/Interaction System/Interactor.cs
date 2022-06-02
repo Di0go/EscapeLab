@@ -54,7 +54,7 @@ public class Interactor : MonoBehaviour
                 else
                 {
                     //saves the Y mesh bounds and multiplies it by 2
-                    float meshY = interactable.transform.GetComponent<MeshFilter>().mesh.bounds.max.y * 2;
+                    float meshY = interactable.transform.GetChild(0).GetComponent<MeshFilter>().mesh.bounds.max.y * 2;
 
                     //sets the UI's position to the interactable's obj position and sums the Y value with the mesh bounds
                     //so the UI appears on top of the object

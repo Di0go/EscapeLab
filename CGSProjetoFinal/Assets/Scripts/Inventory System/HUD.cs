@@ -66,7 +66,7 @@ public class HUD : MonoBehaviour
                 if (buttonCheck.isSlotSelected)
                 {
                     IInventoryItem selectedItem = inventory.playerItems[counter];
-                    buttonCheck.isSlotSelected = false;
+                    //buttonCheck.isSlotSelected = false;
                     return selectedItem;
                 }
                 counter++;
