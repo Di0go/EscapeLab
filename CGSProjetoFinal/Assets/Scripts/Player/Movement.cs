@@ -15,8 +15,8 @@ public class Movement : MonoBehaviour
     void Start()
     {
         speed = 5f;
-        jHeight = 3.5f;
-        fallMult = 2.5f;
+        jHeight = 6f;
+        fallMult = 3f;
         isPlayerGrounded = true;
         rb = GetComponent<Rigidbody>();
         rotationSpeed = new Vector3(0, 250, 0);
@@ -24,11 +24,20 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        jumpInput = Input.GetButton("Jump");
+        jumpInput = Input.GetButtonDown("Jump");
         hInput = Input.GetAxisRaw("Horizontal");
         vInput = Input.GetAxisRaw("Vertical");
         //.normalized so diagnonal speed and normal speed are the same
         dir = new Vector2(hInput, vInput).normalized;
+        //groundedCheck
+        if (rb.velocity.y == 0)
+        {
+            isPlayerGrounded = true;
+        }
+        else
+        {
+            isPlayerGrounded = false;
+        }
     }
 
     void FixedUpdate()
@@ -52,31 +61,14 @@ public class Movement : MonoBehaviour
         //playerIsGrounded prevents jumping again whilst in the air
         if (jumpInput && isPlayerGrounded)
         {
-            rb.AddForce(new Vector2(0, height), ForceMode.VelocityChange);
+            rb.AddForce(Vector3.up * height, ForceMode.Impulse);
+            isPlayerGrounded = false;
         }
 
+        //make the jump look more realistic - well sort of, atleast i tried
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * fallMult * Time.deltaTime;
-        }
-    }
-
-    //collision checkers
-    private void OnCollisionEnter(Collision collision)
-    {
-        //use the tag "Floor" in every floor (duh?)
-        if (collision.gameObject.tag == "Floor")
-        {
-            isPlayerGrounded = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        //use the tag "Floor" in every floor (duh?)
-        if (collision.gameObject.tag == "Floor")
-        {
-            isPlayerGrounded = false;
         }
     }
 }

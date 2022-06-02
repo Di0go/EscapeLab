@@ -15,7 +15,7 @@ public class HUD : MonoBehaviour
 
     void FixedUpdate()
     {
-        inventory.RemoveItem(DropCheck());
+        inventory.RemoveItem(SelectedItem());
     }
 
     public void _ItemAdded(object sender, InventoryEventArgs eventItem)
@@ -46,7 +46,7 @@ public class HUD : MonoBehaviour
     //////
     //DROP
     //checks and returns which item was chosen by the player to drop
-    private IInventoryItem DropCheck()
+    private IInventoryItem SelectedItem()
     {
         if (inventory.playerItems.Count > 0 && Input.GetKeyDown(KeyCode.Q))
         {
@@ -66,7 +66,7 @@ public class HUD : MonoBehaviour
                 if (buttonCheck.isSlotSelected)
                 {
                     IInventoryItem selectedItem = inventory.playerItems[counter];
-                    //buttonCheck.isSlotSelected = false;
+                    buttonCheck.isSlotSelected = false;
                     return selectedItem;
                 }
                 counter++;

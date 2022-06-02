@@ -39,7 +39,15 @@ public class Card : MonoBehaviour, IInteractable, IInventoryItem
         //change the objects position to the front of the player
         gameObject.transform.position = player.transform.position + Vector3.forward * 2;
 
-        //sets the object to true
-        gameObject.SetActive(true);
+        //sets the object to true if it's false
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
+    public void OnSelect()
+    {
+
     }
 }
