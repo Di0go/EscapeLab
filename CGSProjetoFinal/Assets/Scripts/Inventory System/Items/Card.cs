@@ -32,8 +32,12 @@ public class Card : MonoBehaviour, IInteractable, IInventoryItem
     {
         //gameObject uppon pickup
         gameObject.SetActive(false);
+
+        //change layer to non interactable
+        gameObject.layer = default;
     }
 
+    /*
     public void OnDrop()
     {
         //change the objects position to the front of the player
@@ -45,9 +49,10 @@ public class Card : MonoBehaviour, IInteractable, IInventoryItem
             gameObject.SetActive(true);
         }
     }
+    */
 
-    public void OnSelect()
+    public void OnHold()
     {
-
+        Debug.Log("On Hold!");
     }
 }

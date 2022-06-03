@@ -19,11 +19,11 @@ public class Interactor : MonoBehaviour
     [SerializeField] private SpriteRenderer intUI;
 
     private float intPointRadius;
-    private int intNum;
+    public int intNum;
 
     private void Start()
     {
-        intPointRadius = 1.0f;
+        intPointRadius = 1.5f;
     }
 
     private void Update()

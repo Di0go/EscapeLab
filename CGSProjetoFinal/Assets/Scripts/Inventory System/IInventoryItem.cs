@@ -9,7 +9,8 @@ public interface IInventoryItem
     GameObject player { get; set; }
 
     void OnPickup();
-    void OnDrop();
+    //void OnDrop();
+    void OnHold();
 }
 
 //This class allows us to pass the item as an argument when the event is triggered

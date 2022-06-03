@@ -10,7 +10,8 @@ public class Inventory : MonoBehaviour
     public int listCount;
 
     public event EventHandler<InventoryEventArgs> ItemAdded;
-    public event EventHandler<InventoryEventArgs> ItemDropped;
+    //public event EventHandler<InventoryEventArgs> ItemDropped;
+    public event EventHandler<InventoryEventArgs> ItemHolded;
 
     private void Update()
     {
@@ -34,11 +35,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //remove item method
+    /*remove item method DISCARTED
     public void RemoveItem(IInventoryItem item)
     {
-        //check if inventory has items
-        if (item != null)
+        //check item isn't null and check input
+        if (item != null && Input.GetKeyDown(KeyCode.Q))
         {
             //event trigger
             ItemDropped?.Invoke(this, new InventoryEventArgs(item));
@@ -48,6 +49,20 @@ public class Inventory : MonoBehaviour
 
             //remove item
             playerItems.Remove(item);
+        }
+    }
+    */
+
+    //use item method
+    public void HoldItem(IInventoryItem item)
+    {
+        if (item != null)
+        {
+            //OnUse method (specific to each object)
+            item.OnHold();
+
+            //event trigger
+            ItemHolded?.Invoke(this, new InventoryEventArgs(item));
         }
     }
 }

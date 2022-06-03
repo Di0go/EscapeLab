@@ -5,20 +5,37 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     public Inventory inventory;
+    public GameObject player;
+    private IInventoryItem currentItem;
+    private GameObject itemAsObj;
 
     void Start()
     {
         //subscribe the methods to the events
         inventory.ItemAdded += _ItemAdded;
-        inventory.ItemDropped += _ItemDropped;
+        //inventory.ItemDropped += _ItemDropped;
+        inventory.ItemHolded += _ItemHolded;
     }
 
     void FixedUpdate()
     {
-        inventory.RemoveItem(SelectedItem());
+        //check what item the player is holding (if none it returns null)
+        IInventoryItem selectItem = SelectedItem();
+
+        //currentItem represents the last item the player held, it cannot be null afte the first item pickup, hence the null check in the if statment
+        //if selectItem is different than the last item than De-activate the object in the player's hand :)
+        if (currentItem != null && selectItem != currentItem)
+        {
+            itemAsObj.SetActive(false);
+        }
+        //same but for when the player selects an empty slot!
+        if (selectItem != null)
+        {
+            inventory.HoldItem(selectItem);
+        }
     }
 
-    public void _ItemAdded(object sender, InventoryEventArgs eventItem)
+    public void _ItemAdded(object sender, InventoryEventArgs eventData)
     {
         //find the inventory hud
         Transform InventoryPanel = transform.Find("InventoryPanel");
@@ -36,19 +53,17 @@ public class HUD : MonoBehaviour
                 image.enabled = true;
 
                 //add the sprite from the picked up item to the slot
-                image.sprite = eventItem.Item.Image;
+                image.sprite = eventData.Item.Image;
 
                 break;
             }
         }
     }
 
-    //////
-    //DROP
-    //checks and returns which item was chosen by the player to drop
+    //checks and returns which item is currently being holded by the player
     private IInventoryItem SelectedItem()
     {
-        if (inventory.playerItems.Count > 0 && Input.GetKeyDown(KeyCode.Q))
+        if (inventory.playerItems.Count > 0)
         {
             //counter
             int counter = 0;
@@ -62,39 +77,39 @@ public class HUD : MonoBehaviour
                 //new buttonstate object (Slot -> Border)
                 ButtonState buttonCheck = slot.GetChild(0).GetComponent<ButtonState>();
 
-                //checks if button is selected
-                if (buttonCheck.isSlotSelected)
+                //checks if button is selected and prevent bad index by only checking for existing items
+                if (buttonCheck.isSlotSelected && inventory.playerItems.Count - 1 == counter)
                 {
                     IInventoryItem selectedItem = inventory.playerItems[counter];
-                    buttonCheck.isSlotSelected = false;
                     return selectedItem;
                 }
+                //increment to counter each iteration
                 counter++;
             }
         }
+
         return null;
     }
 
-    //handles the UI part of the drop
-    private void _ItemDropped(object sender, InventoryEventArgs eventItem)
+    //item holder event invoker
+    private void _ItemHolded(object sender, InventoryEventArgs eventData)
     {
-        //find the inventory hud
-        Transform InventoryPanel = transform.Find("InventoryPanel");
+        //create a copy to a new variable
+        currentItem = eventData.Item;
 
-        //loop trough all the slots in the inventory
-        foreach (Transform slot in InventoryPanel)
+        //parse the item to a gameobject
+        itemAsObj = (currentItem as MonoBehaviour).gameObject;
+
+        if (!itemAsObj.activeSelf)
         {
-            //get the sprite that is in the slot (Slot -> Border -> Item)
-            Image image = slot.GetChild(0).GetChild(0).GetComponent<Image>();
-
-            if (image.enabled && image.sprite.name == eventItem.Item.Image.name)
-            {
-                image.sprite = null;
-
-                image.enabled = false;
-
-                break;
-            }
+            itemAsObj.SetActive(true);
         }
+
+        //make the item a parent of the hand of the player
+        itemAsObj.transform.parent = player.transform.GetChild(1).transform;
+
+        //make the position of the item the same as the position of the hand
+        itemAsObj.transform.position = player.transform.GetChild(1).position;
     }
+
 }
