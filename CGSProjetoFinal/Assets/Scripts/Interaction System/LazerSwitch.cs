@@ -3,10 +3,13 @@ using UnityEngine;
 public class LazerSwitch : MonoBehaviour, IInteractable
 {
     private GameObject[] Lazers;
+    private Material defaultMat;
+    public Material off;
 
     void Start()
     {
         Lazers = GameObject.FindGameObjectsWithTag("Lazer");
+        defaultMat = gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material;
     }
 
     public bool Interact(Interactor interactor)
@@ -21,6 +24,11 @@ public class LazerSwitch : MonoBehaviour, IInteractable
         {
             lazer.SetActive(false);
         }
+
+        foreach (Transform child in gameObject.transform)
+        {
+            child.GetComponent<MeshRenderer>().material = off;
+        }
     }
 
     private void SwitchOn()
@@ -28,6 +36,11 @@ public class LazerSwitch : MonoBehaviour, IInteractable
         foreach (var lazer in Lazers)
         {
             lazer.SetActive(true);
+        }
+
+        foreach (Transform child in gameObject.transform)
+        {
+            child.GetComponent<MeshRenderer>().material = defaultMat;
         }
     }
 }

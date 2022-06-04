@@ -39,8 +39,7 @@ public class ButtonState : MonoBehaviour
         else if (Input.anyKeyDown && !Input.GetKeyDown(keycode) &&
             !Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.S) &&
             !Input.GetKeyDown(KeyCode.A) && !Input.GetKeyDown(KeyCode.D) &&
-            !Input.GetKeyDown(KeyCode.E) && !Input.GetKeyDown(KeyCode.Q) &&
-            !Input.GetKeyDown(KeyCode.Space)
+            !Input.GetKeyDown(KeyCode.E) && !Input.GetKeyDown(KeyCode.Q)
             )
         {
             isSlotSelected = false;

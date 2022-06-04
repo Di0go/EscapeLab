@@ -8,6 +8,7 @@ public class PadManager : Sequence
 
     private Renderer padRenderer;
     protected Color32 yellow, red, green, defaultColor;
+    public Door door, door1;
 
     private void Start()
     {
@@ -37,6 +38,8 @@ public class PadManager : Sequence
             {
                 Debug.Log("Sequencia Correta!");
                 ChangePadsColor(parentObj, green);
+                door.isDoorOpen = true;
+                door1.isDoorOpen = true;
             }
 
             //sequence is incorrect

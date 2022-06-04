@@ -61,7 +61,7 @@ public class HUD : MonoBehaviour
     }
 
     //checks and returns which item is currently being holded by the player
-    private IInventoryItem SelectedItem()
+    public IInventoryItem SelectedItem()
     {
         if (inventory.playerItems.Count > 0)
         {

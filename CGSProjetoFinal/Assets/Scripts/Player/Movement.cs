@@ -3,12 +3,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed;
-    public Vector3 rotationSpeed;
     private Vector2 dir;
     public float jHeight;
     public float fallMult;
     private Rigidbody rb;
     private bool jumpInput;
+    public Vector3 rotationSpeed;
     private float hInput, vInput;
     private bool isPlayerGrounded;
 
@@ -24,24 +24,15 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        jumpInput = Input.GetButtonDown("Jump");
         hInput = Input.GetAxisRaw("Horizontal");
         vInput = Input.GetAxisRaw("Vertical");
         //.normalized so diagnonal speed and normal speed are the same
         dir = new Vector2(hInput, vInput).normalized;
-        //groundedCheck
-        if (rb.velocity.y == 0)
-        {
-            isPlayerGrounded = true;
-        }
-        else
-        {
-            isPlayerGrounded = false;
-        }
     }
 
     void FixedUpdate()
     {
+        jumpInput = Input.GetKey(KeyCode.Space);
         MovePlayer();
         Jump(jHeight);
     }
@@ -71,4 +62,13 @@ public class Movement : MonoBehaviour
             rb.velocity += Vector3.up * Physics.gravity.y * fallMult * Time.deltaTime;
         }
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "Button")
+        {
+            isPlayerGrounded = true;
+        }
+    }
+
 }
