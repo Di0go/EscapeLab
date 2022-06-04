@@ -54,15 +54,15 @@ public class Interactor : MonoBehaviour
                 else
                 {
                     //saves the Y mesh bounds and multiplies it by 2
-                    float meshY = interactable.transform.GetChild(0).GetComponent<MeshFilter>().mesh.bounds.max.y * 2;
+                    float meshY = transform.GetComponent<MeshCollider>().bounds.max.y;
 
                     //sets the UI's position to the interactable's obj position and sums the Y value with the mesh bounds
                     //so the UI appears on top of the object
                     intUI.transform.localPosition = 
                         new Vector3
-                        (interactable.transform.position.x,         //X position for the UI
-                        interactable.transform.position.y + meshY,  //Y position for the UI
-                        interactable.transform.position.z);         //Z position for the UI
+                        (transform.position.x,         //X position for the UI
+                        transform.position.y + meshY * 1.2f,  //Y position for the UI
+                        transform.position.z);         //Z position for the UI
 
                     //locks the UI's rotation to the main camera's rotation
                     intUI.transform.rotation = Camera.main.transform.rotation;
