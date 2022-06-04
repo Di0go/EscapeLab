@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LabWallCrack
+  m_Name: LabFloor3
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 7f0c6442ca5f2c34eb76005c905efcc4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -37,12 +37,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1.16, y: 1.506}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 23.58987, y: 19.23657}
+        m_Offset: {x: 0, y: 0.128}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 513c24c6f35fe46478904ea72836a9ea, type: 3}
-        m_Scale: {x: 1.16, y: 1.506}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 2f5a244e24101894b9c55fc869b97068, type: 3}
+        m_Scale: {x: 23.58987, y: 19.23657}
+        m_Offset: {x: 0, y: 0.128}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -61,7 +61,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.3
+    - _Glossiness: 0.8
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
