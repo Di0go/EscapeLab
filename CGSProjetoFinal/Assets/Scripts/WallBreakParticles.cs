@@ -1,25 +1,84 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
-public class WallBreakParticles : MonoBehaviour
+public class WallBreakParticles : MonoBehaviour, IInteractable
 {
     public float cubeSize = 20f;
     public int cubesInRow = 5;
 
+    //inventory needs
+    public Inventory inventory;
+    public HUD hud;
+    public GameObject neededObj;
+    public Transform inventoryPanel;
+
+    private GameObject newObj;
+    private RaycastHit hit;
+
+    public Material mat0, mat1, mat2, mat3;
 
     void Start()
     {
-
+        newObj = Instantiate(neededObj);
+        newObj.SetActive(false);
     }
 
-    
-    void Update()
+    public bool Interact(Interactor interactor)
     {
-        if(Input.GetKey("a"))
+        IInventoryItem neededItem = neededObj.GetComponent<Bomb>();
+
+        //remove the item from the hud
+        //if player is holding the bomb 
+        if (hud.SelectedItem() == neededItem)
         {
-            explode();
+            //loop trough all the slots in the inventory
+            foreach (Transform item in inventoryPanel)
+            {
+                //get the sprite that is in the slot (Slot -> Border -> Item)
+                Image image = item.GetChild(0).GetChild(0).GetComponent<Image>();
+
+                if (image.sprite == neededItem.Image)
+                {
+                    image.enabled = false;
+
+                    image.sprite = null;
+                }
+            }
+
+            Destroy(neededObj);
+
+            Physics.Raycast(interactor.transform.GetChild(0).position, Vector3.forward, out hit, 5.0f);
+
+            newObj.SetActive(true);
+
+            newObj.transform.position = hit.point;
+
+            StartCoroutine(Countdown());
+
+            return true;
         }
+
+        return false;
+    }
+
+    //couroutine for the bomb countdown and material change
+    private IEnumerator Countdown()
+    {
+        newObj.transform.GetChild(0).GetComponent<MeshRenderer>().material = mat3;
+        yield return new WaitForSeconds(1);
+
+        newObj.transform.GetChild(0).GetComponent<MeshRenderer>().material = mat2;
+        yield return new WaitForSeconds(1);
+
+        newObj.transform.GetChild(0).GetComponent<MeshRenderer>().material = mat1;
+        yield return new WaitForSeconds(1);
+
+        newObj.transform.GetChild(0).GetComponent<MeshRenderer>().material = mat0;
+        yield return new WaitForSeconds(.25f);
+        Destroy(newObj);
+        explode();
+
     }
 
     public void explode() {

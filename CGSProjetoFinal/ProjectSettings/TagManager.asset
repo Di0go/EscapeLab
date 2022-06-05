@@ -8,6 +8,7 @@ TagManager:
   - Lazer
   - Sphere
   - Button
+  - DestroyWall
   layers:
   - Default
   - TransparentFX

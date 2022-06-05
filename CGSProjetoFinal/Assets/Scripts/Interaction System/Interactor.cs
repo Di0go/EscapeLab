@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 //credits to: https://www.youtube.com/watch?v=THmW4YolDok
 //this class will create a sphere that detects and "caches" collisions

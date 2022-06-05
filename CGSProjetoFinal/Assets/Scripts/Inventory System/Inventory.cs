@@ -35,24 +35,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    /*remove item method DISCARTED
-    public void RemoveItem(IInventoryItem item)
-    {
-        //check item isn't null and check input
-        if (item != null && Input.GetKeyDown(KeyCode.Q))
-        {
-            //event trigger
-            ItemDropped?.Invoke(this, new InventoryEventArgs(item));
-
-            //OnDrop from the interface
-            item.OnDrop();
-
-            //remove item
-            playerItems.Remove(item);
-        }
-    }
-    */
-
     //use item method
     public void HoldItem(IInventoryItem item)
     {

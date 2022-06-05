@@ -22,7 +22,7 @@ public class HUD : MonoBehaviour
         //check what item the player is holding (if none it returns null)
         IInventoryItem selectItem = SelectedItem();
 
-        //currentItem represents the last item the player held, it cannot be null afte the first item pickup, hence the null check in the if statment
+        //currentItem represents the last item the player held, it cannot be null after the first item pickup, hence the null check in the if statment
         //if selectItem is different than the last item than De-activate the object in the player's hand :)
         if (currentItem != null && selectItem != currentItem)
         {
@@ -37,7 +37,7 @@ public class HUD : MonoBehaviour
 
     public void _ItemAdded(object sender, InventoryEventArgs eventData)
     {
-        //find the inventory hud
+        //find the inventory panel
         Transform InventoryPanel = transform.Find("InventoryPanel");
 
         //loop trough all the slots in the inventory
