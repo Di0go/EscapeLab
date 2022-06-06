@@ -15,7 +15,7 @@ public class HealthSystem : MonoBehaviour
 
     void Start()
     {
-        playerHealth = 3;
+        playerHealth = 5;
 
         defaultMat = gameObject.GetComponent<Renderer>().material;
 

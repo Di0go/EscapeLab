@@ -42,6 +42,12 @@ public class Bomb : MonoBehaviour, IInteractable, IInventoryItem
 
     public void OnHold()
     {
-        Debug.Log("On Hold!");
+        gameObject.SetActive(true);
+
+        //make the item a parent of the hand of the player
+        gameObject.transform.parent = player.transform.GetChild(1).transform;
+
+        //make the position of the item the same as the position of the hand
+        gameObject.transform.position = player.transform.GetChild(1).position;
     }
 }

@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-    private int slots = 4;
+    private int slots = 3;
 
     public List<IInventoryItem> playerItems = new List<IInventoryItem>();
     public int listCount;
 
     public event EventHandler<InventoryEventArgs> ItemAdded;
     //public event EventHandler<InventoryEventArgs> ItemDropped;
-    public event EventHandler<InventoryEventArgs> ItemHolded;
+    public event EventHandler<InventoryEventArgs> ItemHeld;
 
     private void Update()
     {
@@ -38,13 +38,10 @@ public class Inventory : MonoBehaviour
     //use item method
     public void HoldItem(IInventoryItem item)
     {
-        if (item != null)
-        {
             //OnUse method (specific to each object)
             item.OnHold();
 
             //event trigger
-            ItemHolded?.Invoke(this, new InventoryEventArgs(item));
-        }
+            ItemHeld?.Invoke(this, new InventoryEventArgs(item));
     }
 }

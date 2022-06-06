@@ -9,21 +9,21 @@ public class HUD : MonoBehaviour
     private IInventoryItem currentItem;
     private GameObject itemAsObj;
 
-    void Start()
+    void OnEnable()
     {
         //subscribe the methods to the events
         inventory.ItemAdded += _ItemAdded;
         //inventory.ItemDropped += _ItemDropped;
-        inventory.ItemHolded += _ItemHolded;
+        inventory.ItemHeld += _ItemHeld;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         //check what item the player is holding (if none it returns null)
         IInventoryItem selectItem = SelectedItem();
 
-        //currentItem represents the last item the player held, it cannot be null after the first item pickup, hence the null check in the if statment
-        //if selectItem is different than the last item than De-activate the object in the player's hand :)
+        //currentItem represents the item the player holds, it cannot be null after the first item pickup, hence the null check in the if statment
+        //if selectItem is different than the currentItem than De-activate the object in the player's hand :)
         if (currentItem != null && selectItem != currentItem)
         {
             itemAsObj.SetActive(false);
@@ -78,7 +78,7 @@ public class HUD : MonoBehaviour
                 ButtonState buttonCheck = slot.GetChild(0).GetComponent<ButtonState>();
 
                 //checks if button is selected and prevent bad index by only checking for existing items
-                if (buttonCheck.isSlotSelected && inventory.playerItems.Count - 1 == counter)
+                if (buttonCheck.isSlotSelected)
                 {
                     IInventoryItem selectedItem = inventory.playerItems[counter];
                     return selectedItem;
@@ -92,24 +92,13 @@ public class HUD : MonoBehaviour
     }
 
     //item holder event invoker
-    private void _ItemHolded(object sender, InventoryEventArgs eventData)
+    private void _ItemHeld(object sender, InventoryEventArgs eventData)
     {
         //create a copy to a new variable
         currentItem = eventData.Item;
 
         //parse the item to a gameobject
         itemAsObj = (currentItem as MonoBehaviour).gameObject;
-
-        if (!itemAsObj.activeSelf)
-        {
-            itemAsObj.SetActive(true);
-        }
-
-        //make the item a parent of the hand of the player
-        itemAsObj.transform.parent = player.transform.GetChild(1).transform;
-
-        //make the position of the item the same as the position of the hand
-        itemAsObj.transform.position = player.transform.GetChild(1).position;
     }
 
 }

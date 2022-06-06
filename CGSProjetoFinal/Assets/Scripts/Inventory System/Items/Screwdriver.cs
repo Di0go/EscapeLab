@@ -18,8 +18,6 @@ public class Screwdriver : MonoBehaviour, IInteractable, IInventoryItem
     void Update()
     {
         transform.localRotation = Quaternion.identity;
-
-        Debug.DrawRay(gameObject.transform.position, Vector3.forward * 4.0f, Color.red, Mathf.Infinity);
     }
 
     public bool Interact(Interactor interactor)
@@ -50,14 +48,12 @@ public class Screwdriver : MonoBehaviour, IInteractable, IInventoryItem
 
     public void OnHold()
     {
-        hits = Physics.RaycastAll(gameObject.transform.position, Vector3.forward, 4.0f); 
+        gameObject.SetActive(true);
 
-        foreach (RaycastHit hit in hits)
-        {
-            if (hit.transform.CompareTag("LabTrap"))
-            {
-                Debug.Log("hit");
-            }
-        }
+        //make the item a parent of the hand of the player
+        gameObject.transform.parent = player.transform.GetChild(1).transform;
+
+        //make the position of the item the same as the position of the hand
+        gameObject.transform.position = player.transform.GetChild(1).position;
     }
 }

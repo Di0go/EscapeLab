@@ -14,9 +14,9 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        speed = 5f;
-        jHeight = 6f;
-        fallMult = 3f;
+        speed = 7.5f;
+        jHeight = 7f;
+        fallMult = 3.5f;
         isPlayerGrounded = true;
         rb = GetComponent<Rigidbody>();
         rotationSpeed = new Vector3(0, 250, 0);
