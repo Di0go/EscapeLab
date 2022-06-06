@@ -12,6 +12,7 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
     public HUD hud;
     public GameObject neededObj;
     public Transform inventoryPanel;
+    public GameObject vfx;
 
     private GameObject newObj;
     private RaycastHit hit;
@@ -43,6 +44,8 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
                     image.enabled = false;
 
                     image.sprite = null;
+
+                    inventory.playerItems.Remove(neededItem);
                 }
             }
 
@@ -76,6 +79,7 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
 
         newObj.transform.GetChild(0).GetComponent<MeshRenderer>().material = mat0;
         yield return new WaitForSeconds(.25f);
+        Instantiate(vfx, newObj.transform.position, newObj.transform.rotation);
         Destroy(newObj);
         explode();
 
@@ -83,6 +87,7 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
 
     public void explode() {
         Destroy(gameObject);
+
 
         //creates wall pieces
         for (int x = 0; x < cubesInRow; x++){

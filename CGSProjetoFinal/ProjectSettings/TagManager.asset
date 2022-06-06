@@ -9,6 +9,7 @@ TagManager:
   - Sphere
   - Button
   - DestroyWall
+  - LabTrap
   layers:
   - Default
   - TransparentFX
