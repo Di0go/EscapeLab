@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2651910426835891268}
   m_Layer: 0
   m_Name: Lazer
-  m_TagString: Lazer
+  m_TagString: LabTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
