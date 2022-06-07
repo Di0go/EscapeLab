@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CountdownTimer : MonoBehaviour
 {
-    public float timeValue = 90; //Tempo do countdown (em segundos)
+    public float timeValue; //Tempo do countdown (em segundos)
     public Text timeText;
     
     void Start()

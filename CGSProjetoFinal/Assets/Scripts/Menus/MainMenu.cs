@@ -29,6 +29,11 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Application.Quit();
     }
 
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     void Start()
     {
         defaultColor = transform.GetChild(0).gameObject.GetComponent<Text>().color;

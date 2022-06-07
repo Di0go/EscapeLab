@@ -19,7 +19,7 @@ public class Door : MonoBehaviour
         desiredDuration = 8f;
         isDoorOpen = false;
         startPos = transform.position;
-        endPos = new Vector3(transform.position.x, -25, transform.position.z); 
+        endPos = new Vector3(transform.position.x, 25, transform.position.z); 
 
         on = transform.GetChild(1).GetChild(0).gameObject;
         off = transform.GetChild(1).GetChild(1).gameObject;

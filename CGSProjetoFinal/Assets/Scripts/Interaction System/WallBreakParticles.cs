@@ -82,7 +82,6 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
         Instantiate(vfx, newObj.transform.position, newObj.transform.rotation);
         Destroy(newObj);
         explode();
-
     }
 
     public void explode() {
