@@ -14,6 +14,9 @@ public class Door : MonoBehaviour
     private GameObject on;
     private GameObject off;
 
+    private AudioSource source;
+    public AudioClip clip;
+
     void Start()
     {
         desiredDuration = 8f;
@@ -25,6 +28,7 @@ public class Door : MonoBehaviour
         off = transform.GetChild(1).GetChild(1).gameObject;
 
         on.SetActive(false);
+        source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -32,6 +36,7 @@ public class Door : MonoBehaviour
         if (isDoorOpen)
         {
             OpenDoor();
+            source.PlayOneShot(clip, 0.05f);
         }
     }
 

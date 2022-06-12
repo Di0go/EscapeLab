@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 3717256379773940469}
   - component: {fileID: 1061403568576249736}
   - component: {fileID: 1995236037080272868}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spikes_M3D
-  m_TagString: Untagged
+  m_TagString: LabTrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2584349472761121178
 Transform:

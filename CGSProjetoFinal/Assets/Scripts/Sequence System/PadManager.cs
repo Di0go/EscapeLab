@@ -7,8 +7,10 @@ public class PadManager : Sequence
     [SerializeField] protected GameObject parentObj;
 
     private Renderer padRenderer;
+    private AudioSource aSource;
     protected Color32 yellow, red, green, defaultColor;
     public Door door, door1;
+    public AudioClip plateDown;
 
     private void Start()
     {
@@ -18,6 +20,7 @@ public class PadManager : Sequence
         red = new Color32(220, 20, 60, 125);
         green = new Color32(50, 205, 50, 125);
         defaultColor = new Color32(255, 255, 255, 125);
+        aSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,6 +30,9 @@ public class PadManager : Sequence
         {
             //add it to the list  
             playerOrder.Add(int.Parse(transform.name));
+
+            //play audioClip
+            aSource.PlayOneShot(plateDown, 0.55f);
 
             //changes the pads material to yellow uppon activation
             padRenderer.material.color = yellow;
@@ -38,6 +44,7 @@ public class PadManager : Sequence
             {
                 Debug.Log("Sequencia Correta!");
                 ChangePadsColor(parentObj, green);
+                audioTrigger = 1;
                 door.isDoorOpen = true;
                 door1.isDoorOpen = true;
             }
@@ -46,6 +53,7 @@ public class PadManager : Sequence
             else if (playerOrder.Count == correctOrder.Count && !playerOrder.SequenceEqual(correctOrder))
             {
                 Debug.Log("Sequencia Errada");
+                audioTrigger = 2;
                 ChangePadsColor(parentObj, red);
             }
         }

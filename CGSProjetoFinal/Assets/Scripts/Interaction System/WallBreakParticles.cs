@@ -18,6 +18,8 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
     private RaycastHit hit;
 
     public Material mat0, mat1, mat2, mat3;
+    public static bool explosionSFX = false;
+    private bool flag = true;
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
     public bool Interact(Interactor interactor)
     {
         IInventoryItem neededItem = neededObj.GetComponent<Bomb>();
+        MakeSound();
 
         //remove the item from the hud
         //if player is holding the bomb 
@@ -78,7 +81,7 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(1);
 
         newObj.transform.GetChild(0).GetComponent<MeshRenderer>().material = mat0;
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(1);
         Instantiate(vfx, newObj.transform.position, newObj.transform.rotation);
         Destroy(newObj);
         explode();
@@ -114,5 +117,14 @@ public class WallBreakParticles : MonoBehaviour, IInteractable
 
         if(c == 1) piece.GetComponent<MeshRenderer>().material.color = new Color32(2, 0, 14, 255);
         else piece.GetComponent<MeshRenderer>().material.color = new Color32(255, 255, 255, 255);
+    }
+
+    void MakeSound()
+    {
+        if (flag == true)
+        {
+            explosionSFX = true;
+            flag = false;
+        }
     }
 }

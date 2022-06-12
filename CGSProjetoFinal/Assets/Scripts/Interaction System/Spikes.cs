@@ -6,6 +6,7 @@ public class Spikes : MonoBehaviour, IInteractable
     public HUD hud;
     public GameObject neededObj;
     private bool canDamage;
+    public static bool playSound = false; 
 
     void Start()
     {
@@ -16,7 +17,8 @@ public class Spikes : MonoBehaviour, IInteractable
     {
         if (hud.SelectedItem() == neededObj.GetComponent<IInventoryItem>())
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            playSound = true;
             return true;
         }
 

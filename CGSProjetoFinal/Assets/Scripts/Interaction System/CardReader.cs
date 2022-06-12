@@ -6,10 +6,13 @@ public class CardReader : MonoBehaviour, IInteractable
     public IInventoryItem neededItem;
     public GameObject neededObj;
     public Door door;
+    public AudioSource source;
+    public AudioClip clip;
 
     private void Start()
     {
             neededItem = neededObj.GetComponent<IInventoryItem>();
+            source = GetComponent<AudioSource>();
     }
 
     public bool Interact(Interactor interactor)
@@ -17,6 +20,7 @@ public class CardReader : MonoBehaviour, IInteractable
         if (inventory.SelectedItem() == neededItem)
         {
             door.isDoorOpen = true;
+            source.PlayOneShot(clip, 0.35f);
             return true;
         }
         return false;

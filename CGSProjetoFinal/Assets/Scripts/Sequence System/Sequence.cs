@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 public class Sequence : MonoBehaviour
 {
-    static protected List<int> correctOrder;
+    static public List<int> correctOrder;
 
-    static protected List<int> playerOrder;
+    static public List<int> playerOrder;
+
+    public static int audioTrigger;
 
     void Start()
     {

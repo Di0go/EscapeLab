@@ -5,16 +5,20 @@ public class LazerSwitch : MonoBehaviour, IInteractable
     private GameObject[] Lazers;
     private Material defaultMat;
     public Material off;
+    private AudioSource source;
+    public AudioClip clip;
 
     void Start()
     {
         Lazers = GameObject.FindGameObjectsWithTag("Lazer");
         defaultMat = gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material;
+        source = GetComponent<AudioSource>();
     }
 
     public bool Interact(Interactor interactor)
     {
         if (Lazers[0].activeSelf == true) SwitchOff(); else SwitchOn();
+        source.PlayOneShot(clip, 0.35f);
         return true;
     }
 
