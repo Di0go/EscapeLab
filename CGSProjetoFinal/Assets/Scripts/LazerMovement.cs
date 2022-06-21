@@ -73,7 +73,6 @@ public class LazerMovement : MonoBehaviour
         {
             collision.gameObject.GetComponent<HealthSystem>().DamagePlayer(lazerDamage);
             canDamage = false;
-
             //invoke allows us to wait x time before executing a method
             Invoke("CooldownSwitch", lazerCooldown);
         }

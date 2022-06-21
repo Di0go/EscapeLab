@@ -15,6 +15,7 @@ public class HealthSystem : MonoBehaviour
     private bool canDie;
     public Material dmgMat;
     public CountdownTimer timer;
+    public ParticleSystem damageParticles;
 
     void Start()
     {
@@ -65,16 +66,18 @@ public class HealthSystem : MonoBehaviour
         UpdateHearts();
         //player damage debug animation
         StartCoroutine(DamageAnimation(0.25f));
+        Debug.Log(-damage);
     }
 
     private IEnumerator DamageAnimation(float seconds)
     {
         //changes the color to red
         gameObject.GetComponent<Renderer>().material = dmgMat;
+        if (!damageParticles.isPlaying) damageParticles.Play();
 
         //wait for x seconds
         yield return new WaitForSeconds(seconds);
-
+        if (damageParticles.isPlaying) damageParticles.Stop();
         if (canDie)
         {
             //changes the material back to default

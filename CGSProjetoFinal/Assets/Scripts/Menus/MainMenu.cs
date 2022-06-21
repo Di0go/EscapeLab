@@ -24,6 +24,11 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         SceneManager.LoadScene("BuildScene");
     }
 
+    public void ControlsMenu()
+    {
+        SceneManager.LoadScene("ControlsMenu");
+    }
+
     public void QuitGame()
     {
         Application.Quit();
