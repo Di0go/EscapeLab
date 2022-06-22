@@ -898,75 +898,75 @@ PrefabInstance:
     - target: {fileID: 1400244895061912777, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 1400244895061912777, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     - target: {fileID: 1487518660645445458, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 1487518660645445458, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     - target: {fileID: 1984876573638037514, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 1984876573638037514, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     - target: {fileID: 3227210111425168030, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 3227210111425168030, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     - target: {fileID: 4078285272154336498, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 4078285272154336498, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     - target: {fileID: 4208410048230160716, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 4208410048230160716, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     - target: {fileID: 4959058540255775900, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 4959058540255775900, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     - target: {fileID: 6535115370175459216, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 6535115370175459216, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     - target: {fileID: 6976400851099440591, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door
       value: 
-      objectReference: {fileID: 206647702}
+      objectReference: {fileID: 188213263}
     - target: {fileID: 6976400851099440591, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
       propertyPath: door1
       value: 
-      objectReference: {fileID: 368128320}
+      objectReference: {fileID: 637907403}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9604c163d72429541a17db9b2faeb1e1, type: 3}
 --- !u!1001 &67399370
@@ -3589,6 +3589,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39dcf57bd56e3a64dbca18f4a10ea1fe, type: 3}
+--- !u!114 &188213263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1147025871, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
+  m_PrefabInstance: {fileID: 1685713870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f3fb6d9d6ca9845af0b9cb47a505b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &193971038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,17 +3770,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39dcf57bd56e3a64dbca18f4a10ea1fe, type: 3}
---- !u!114 &206647702 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 206647702, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
-  m_PrefabInstance: {fileID: 1685713870}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f3fb6d9d6ca9845af0b9cb47a505b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &223339930
 GameObject:
   m_ObjectHideFlags: 0
@@ -5497,17 +5497,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &368128320 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 368128320, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
-  m_PrefabInstance: {fileID: 1141955344}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f3fb6d9d6ca9845af0b9cb47a505b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &383003131
 GameObject:
   m_ObjectHideFlags: 0
@@ -8299,6 +8288,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &637907403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1147025871, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
+  m_PrefabInstance: {fileID: 1141955344}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f3fb6d9d6ca9845af0b9cb47a505b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &642346875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14061,6 +14061,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 893061941735639213, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 893061941735639213, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2916949400416181065, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
       propertyPath: m_Name
       value: LabDoor to C
@@ -17098,8 +17106,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9999998, y: 1, z: 1.0272601}
-  m_Center: {x: 0, y: 0, z: 0.013629843}
+  m_Size: {x: 0.9999998, y: 1, z: 1.0016869}
+  m_Center: {x: 0, y: 0, z: 0.0008431566}
 --- !u!23 &1351698256
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17198,7 +17206,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!82 &1351698261
 AudioSource:
@@ -18254,6 +18262,10 @@ PrefabInstance:
       propertyPath: rolloffMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 893061941735639213, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2916949400416181065, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
       propertyPath: m_Name
       value: LabDoor Labyrinth
@@ -19071,7 +19083,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481224193}
-  m_LocalRotation: {x: 0.21496698, y: -0.013729262, z: 0.0030223017, w: 0.9765201}
+  m_LocalRotation: {x: 0.21496698, y: -0.013729249, z: 0.0030222984, w: 0.9765201}
   m_LocalPosition: {x: 29.800861, y: 5.0000005, z: -19.31987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -21675,6 +21687,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 893061941735639213, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 893061941735639213, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2916949400416181065, guid: 107a94f0a362fe14db32785a9c1d8966, type: 3}
       propertyPath: m_Name
       value: LabDoor to B
@@ -23956,7 +23976,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968096436}
-  m_LocalRotation: {x: 0.21496698, y: -0.013729262, z: 0.0030223017, w: 0.9765201}
+  m_LocalRotation: {x: 0.21496698, y: -0.013729249, z: 0.0030222984, w: 0.9765201}
   m_LocalPosition: {x: 0.38086128, y: 9.110001, z: -20.01987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
