@@ -1,2 +1,4 @@
 # Escape Lab
-Projeto final de Computação Gráfica e Simulação e Ambientes Virtuais e Interativos
+Final project for CGS.
+
+Enjoy the game :)
