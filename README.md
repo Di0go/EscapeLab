@@ -8,4 +8,7 @@ There are several challenges such as puzzles, lasers and a labyrinth in you way,
 
 ![alt text](https://github.com/Di0go/EscapeLab/blob/main/Images/EL1.png)
 ![alt text](https://github.com/Di0go/EscapeLab/blob/main/Images/EL4.png)
+![alt text](https://github.com/Di0go/EscapeLab/blob/main/Images/EL6.png)
+![alt text](https://github.com/Di0go/EscapeLab/blob/main/Images/EL5.png)
 ![alt text](https://github.com/Di0go/EscapeLab/blob/main/Images/EL3.png)
+![alt text](https://github.com/Di0go/EscapeLab/blob/main/Images/EL7.png)
